@@ -1,12 +1,17 @@
-package com.cyane.wiki;
+package com.cyane.wiki.config;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
+// @ComponentScan({"com.jiawa", "com.test"})
+@ComponentScan("com.cyane")
 @SpringBootApplication
+@MapperScan("com.cyane.wiki.mapper")
 public class WikiApplication {
 
     private static final Logger LOG = LoggerFactory.getLogger(WikiApplication.class);
