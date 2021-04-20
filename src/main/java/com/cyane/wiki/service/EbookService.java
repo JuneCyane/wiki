@@ -7,6 +7,7 @@ import com.cyane.wiki.req.EbookReq;
 import com.cyane.wiki.resp.EbookResp;
 import com.cyane.wiki.util.CopyUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,7 +22,10 @@ public class EbookService {
         //写法固定
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
-        criteria.andNameLike("%"+req.getName()+"%");
+        //动态sql
+        if (!ObjectUtils.isEmpty(req.getName())){
+            criteria.andNameLike("%"+req.getName()+"%");
+        }
         List<Ebook> ebooklist = ebookMapper.selectByExample(ebookExample);
         //从List<Ebook>变为List<EbookResp>
 /*        List<EbookResp> respList=new ArrayList<>();
