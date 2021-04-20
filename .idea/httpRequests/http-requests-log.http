@@ -1,5 +1,11 @@
 GET http://localhost:8880/test/list
 
+<> 2021-04-20T221801.200.json
+
+###
+
+GET http://localhost:8880/test/list
+
 <> 2021-04-20T221058.200.json
 
 ###
@@ -298,13 +304,6 @@ GET http://localhost:8880/hello
 Accept: application/json
 
 <> 2021-04-19T152228.200.json
-
-###
-
-GET http://localhost:8880/hello
-Accept: application/json
-
-<> 2021-04-19T150935.200.json
 
 ###
 
