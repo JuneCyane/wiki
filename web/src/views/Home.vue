@@ -82,20 +82,16 @@ for (let i = 0; i < 23; i++) {
 export default defineComponent({
   name: 'Home',
   setup() {
-    console.log("setup");
     //响应式数据
     const ebooks = ref();
     const ebooks1 = reactive({books: []});
 
     onMounted(() => {
-      //初始化函数建议写在生命周期里
-      console.log("onMounted2");
       axios.get("/ebook/list").then((response) => {
         const data = response.data;
         //对应的电子书列表
         ebooks.value = data.content;
         ebooks1.books = data.content;
-        console.log(response);
       });
     });
     //最后把ebooks的数据return回去
