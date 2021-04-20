@@ -1,3 +1,15 @@
+GET http://localhost:8880/ebook/list?name=教程
+
+<> 2021-04-20T104031.200.json
+
+###
+
+GET http://localhost:8880/ebook/list?name=Spring
+
+<> 2021-04-20T104018.200.json
+
+###
+
 GET http://localhost:8880/ebook/list?name=Spring
 
 <> 2021-04-20T103248.200.json
@@ -295,22 +307,6 @@ GET http://localhost:8880/hello
 Accept: application/json
 
 <> 2021-04-19T150745.200.json
-
-###
-
-GET http://localhost:8880/hello
-Accept: application/json
-
-<> 2021-04-19T150725.200.json
-
-###
-
-POST http://localhost:8880/hello/post
-Content-Type: application/x-www-form-urlencoded
-
-name=test
-
-<> 2021-04-19T145248.200.txt
 
 ###
 
