@@ -1,12 +1,7 @@
 <template>
   <a-layout>
     <a-layout-sider width="200" style="background: #fff">
-      <a-menu
-          mode="inline"
-          v-model:selectedKeys="selectedKeys2"
-          v-model:openKeys="openKeys"
-          :style="{ height: '100%', borderRight: 0 }"
-      >
+      <a-menu>
         <a-sub-menu key="sub1">
           <template #title>
             <span><user-outlined/>subnav 111</span>
@@ -39,22 +34,44 @@
     <a-layout-content
         :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
-      Content
+      <pre>
+{{ ebooks }}
+
+{{ ebooks2 }}
+      </pre>
     </a-layout-content>
   </a-layout>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
-import  axios from 'axios';
+import {defineComponent, onMounted, ref, reactive, toRef} from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'Home',
   setup() {
     console.log("setup");
-    axios.get("http://localhost:8880/ebook/list?name=Spring").then((response)=>{
-      console.log(response);
-    })
+    //响应式数据
+    const ebooks = ref();
+    const ebooks1 = reactive({books: []});
+
+    onMounted(() => {
+      //初始化函数建议写在生命周期里
+      console.log("onMounted");
+      axios.get("http://localhost:8880/ebook/list?name=Spring").then((response) => {
+        const data = response.data;
+        //对应的电子书列表
+        ebooks.value = data.content;
+        ebooks1.books = data.content;
+        console.log(response);
+      });
+    });
+    //最后把ebooks的数据return回去
+    return {
+      ebooks,
+
+      ebooks2: toRef(ebooks1,"books")
+    }
   }
 })
 </script>
