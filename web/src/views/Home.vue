@@ -89,8 +89,8 @@ export default defineComponent({
 
     onMounted(() => {
       //初始化函数建议写在生命周期里
-      console.log("onMounted");
-      axios.get("http://localhost:8880/ebook/list").then((response) => {
+      console.log("onMounted111");
+      axios.get(process.env.VUE_APP_SERVER+"/ebook/list").then((response) => {
         const data = response.data;
         //对应的电子书列表
         ebooks.value = data.content;
