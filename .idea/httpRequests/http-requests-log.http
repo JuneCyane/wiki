@@ -1,3 +1,15 @@
+GET http://localhost:8880/test/list
+
+<> 2021-04-20T221058.200.json
+
+###
+
+GET http://localhost:8880/demo/list
+
+<> 2021-04-20T221042.200.json
+
+###
+
 GET http://localhost:8880/ebook/list?name=教程
 
 <> 2021-04-20T104031.200.json
@@ -293,20 +305,6 @@ GET http://localhost:8880/hello
 Accept: application/json
 
 <> 2021-04-19T150935.200.json
-
-###
-
-GET http://localhost:8880/hello
-Accept: application/json
-
-<> 2021-04-19T150910.200.json
-
-###
-
-GET http://localhost:8880/hello
-Accept: application/json
-
-<> 2021-04-19T150745.200.json
 
 ###
 
