@@ -8,6 +8,7 @@ import com.cyane.wiki.req.EbookSaveReq;
 import com.cyane.wiki.resp.EbookQueryResp;
 import com.cyane.wiki.resp.PageResp;
 import com.cyane.wiki.util.CopyUtil;
+import com.cyane.wiki.util.SnowFlake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -25,6 +26,9 @@ public class EbookService {
 
     @Resource
     private EbookMapper ebookMapper;
+
+    @Resource
+    private SnowFlake snowFlake;
 
     public PageResp<EbookQueryResp> list(EbookQueryReq req) {
         EbookExample ebookExample = new EbookExample();
@@ -65,6 +69,7 @@ public class EbookService {
         //根据传进来req的id判断是新增还是更新
         if (ObjectUtils.isEmpty(req.getId())) {
             //新增
+            ebook.setId(snowFlake.nextId());
             ebookMapper.insert(ebook);
         } else {
             //更新
