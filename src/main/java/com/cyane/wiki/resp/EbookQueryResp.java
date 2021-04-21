@@ -3,7 +3,7 @@ package com.cyane.wiki.resp;
 /**
  * 正常情况EbookResp=Ebook
  */
-public class EbookResp {
+public class EbookQueryResp {
     private Long id;
 
     private String name;

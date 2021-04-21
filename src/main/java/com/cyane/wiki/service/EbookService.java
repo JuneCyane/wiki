@@ -3,8 +3,9 @@ package com.cyane.wiki.service;
 import com.cyane.wiki.domain.Ebook;
 import com.cyane.wiki.domain.EbookExample;
 import com.cyane.wiki.mapper.EbookMapper;
-import com.cyane.wiki.req.EbookReq;
-import com.cyane.wiki.resp.EbookResp;
+import com.cyane.wiki.req.EbookQueryReq;
+import com.cyane.wiki.req.EbookSaveReq;
+import com.cyane.wiki.resp.EbookQueryResp;
 import com.cyane.wiki.resp.PageResp;
 import com.cyane.wiki.util.CopyUtil;
 import com.github.pagehelper.PageHelper;
@@ -25,7 +26,7 @@ public class EbookService {
     @Resource
     private EbookMapper ebookMapper;
 
-    public PageResp<EbookResp> list(EbookReq req) {
+    public PageResp<EbookQueryResp> list(EbookQueryReq req) {
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
         if (!ObjectUtils.isEmpty(req.getName())) {
@@ -49,10 +50,26 @@ public class EbookService {
 
 
         // 列表复制
-        List<EbookResp> list = CopyUtil.copyList(ebookList, EbookResp.class);
-        PageResp<EbookResp> pageResp = new PageResp();
+        List<EbookQueryResp> list = CopyUtil.copyList(ebookList, EbookQueryResp.class);
+        PageResp<EbookQueryResp> pageResp = new PageResp();
         pageResp.setTotal(pageInfo.getTotal());
         pageResp.setList(list);
         return pageResp;
+    }
+
+    /**
+     * 保存
+     */
+    public void save(EbookSaveReq req) {
+        Ebook ebook = CopyUtil.copy(req, Ebook.class);
+        //根据传进来req的id判断是新增还是更新
+        if (ObjectUtils.isEmpty(req.getId())) {
+            //新增
+            ebookMapper.insert(ebook);
+        } else {
+            //更新
+            ebookMapper.updateByPrimaryKey(ebook);
+        }
+
     }
 }
