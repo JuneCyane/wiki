@@ -19,8 +19,8 @@ public class EbookController {
 
     @GetMapping("/list")
     public CommonResp list(EbookQueryReq req) {
-        CommonResp<PageResp<EbookQueryResp>> resp= new CommonResp<>();
-        PageResp<EbookQueryResp> list= ebookService.list(req);
+        CommonResp<PageResp<EbookQueryResp>> resp = new CommonResp<>();
+        PageResp<EbookQueryResp> list = ebookService.list(req);
         resp.setContent(list);
         return resp;
     }
@@ -29,6 +29,14 @@ public class EbookController {
     public CommonResp save(@RequestBody EbookSaveReq req) {
         CommonResp resp = new CommonResp<>();
         ebookService.save(req);
+        return resp;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    //delete函数中的id会自动映射{id}
+    public CommonResp delete(@PathVariable Long id) {
+        CommonResp resp = new CommonResp<>();
+        ebookService.delete(id);
         return resp;
     }
 }
